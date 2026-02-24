@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-unirag"
+version = "0.1.0"
+description = "Agent-UniRAG: Unified RAG agent implemented with LangGraph"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pypdf>=4.0.0",
+    "langgraph>=0.2.0",
+    "langchain-core>=0.3.0",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-anthropic>=0.2.0",
+    "langchain-community>=0.3.0",
+    "langchain-text-splitters>=0.3.0",
+    "langchain-chroma>=0.1.0",
+    "chromadb>=0.4.0",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "gunicorn>=23.0.0",
+    "python-multipart>=0.0.16",
+]
+
+[project.optional-dependencies]
+retrieval = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = []
