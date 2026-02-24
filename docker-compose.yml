@@ -1,0 +1,23 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - AGENT_MAX_SEARCHES=${AGENT_MAX_SEARCHES:-5}
+      - AGENT_TOP_K=${AGENT_TOP_K:-8}
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
